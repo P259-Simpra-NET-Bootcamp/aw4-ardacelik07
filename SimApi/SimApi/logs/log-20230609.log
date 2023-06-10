@@ -1,0 +1,2505 @@
+2023-06-09 09:08:17.210 [INF] Application is starting...
+2023-06-09 09:08:27.403 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:08:27.406 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:08:27.409 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:08:28.876 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:08:28.881 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:08:29.555 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2023-06-09 09:08:29.985 [INF] -------------Request-Begin------------
+2023-06-09 09:08:29.987 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: 
+2023-06-09 09:08:29.988 [INF] 
+
+2023-06-09 09:08:29.990 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[]}
+2023-06-09 09:08:29.991 [INF] -------------Request-End------------
+2023-06-09 09:08:47.412 [INF] Application is starting...
+2023-06-09 09:09:54.868 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:09:54.871 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:09:54.872 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:09:55.205 [INF] -------------Request-Begin------------
+2023-06-09 09:09:55.208 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: {"customerNumber":12,"firstName":"arda","lastName":"celik","dateOfBirth":"06.02.2000","accounts":[{"customerId":0,"accountNumber":0,"name":"string","openDate":"2023-06-09T06:08:56.505Z","balance":0}]}
+2023-06-09 09:09:55.208 [INF] 
+
+2023-06-09 09:09:55.209 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 400 
+Response Body: {"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"00-724fdf5fa51cbc18234794b8756494e5-05870deb39c4280a-00","errors":{"request":["The request field is required."],"$.dateOfBirth":["The JSON value could not be converted to System.DateTime. Path: $.dateOfBirth | LineNumber: 0 | BytePositionInLine: 85."]}
+2023-06-09 09:09:55.210 [INF] -------------Request-End------------
+2023-06-09 09:12:34.836 [INF] Application is starting...
+2023-06-09 09:16:16.971 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:16:16.975 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:16:16.977 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:16:17.980 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:16:17.985 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:16:18.674 [ERR] Failed executing DbCommand (35ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."Customer" ("CreatedAt", "CreatedBy", "CustomerNumber", "DateOfBirth", "FirstName", "LastName", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id", "IsValid";
+2023-06-09 09:16:18.759 [ERR] An exception occurred in the database while saving changes for context type 'SimApi.Data.Context.SimEfDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2023-06-09 09:16:18.893 [ERR] Insert Exception
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at SimApi.Data.Uow.UnitOfWork.Complete() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\UnitOfWork\UnitOfWork.cs:line 39
+   at SimApi.Operation.BaseService`3.Insert(TRequest request) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Base\BaseService.cs:line 86
+2023-06-09 09:16:18.942 [INF] -------------Request-Begin------------
+2023-06-09 09:16:18.943 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: {"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09","accounts":[{"customerId":0,"accountNumber":0,"name":"string","openDate":"2023-06-09T06:15:46.510Z","balance":0}]}
+2023-06-09 09:16:18.945 [INF] 
+
+2023-06-09 09:16:18.946 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"An error occurred while saving the entity changes. See the inner exception for details."}
+2023-06-09 09:16:18.948 [INF] -------------Request-End------------
+2023-06-09 09:16:59.825 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:16:59.836 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:16:59.838 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:16:59.877 [ERR] Failed executing DbCommand (1ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = DateTime), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."Customer" ("CreatedAt", "CreatedBy", "CustomerNumber", "DateOfBirth", "FirstName", "LastName", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id", "IsValid";
+2023-06-09 09:16:59.882 [ERR] An exception occurred in the database while saving changes for context type 'SimApi.Data.Context.SimEfDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2023-06-09 09:16:59.923 [ERR] Insert Exception
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at SimApi.Data.Uow.UnitOfWork.Complete() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\UnitOfWork\UnitOfWork.cs:line 39
+   at SimApi.Operation.BaseService`3.Insert(TRequest request) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Base\BaseService.cs:line 86
+2023-06-09 09:16:59.932 [INF] -------------Request-Begin------------
+2023-06-09 09:16:59.933 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: {"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09","accounts":[]}
+2023-06-09 09:16:59.935 [INF] 
+
+2023-06-09 09:16:59.938 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"An error occurred while saving the entity changes. See the inner exception for details."}
+2023-06-09 09:16:59.939 [INF] -------------Request-End------------
+2023-06-09 09:17:19.867 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:17:19.869 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:17:19.870 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:17:20.002 [INF] -------------Request-Begin------------
+2023-06-09 09:17:20.003 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: {"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09T06:15:46.510Z","accounts":[]}
+2023-06-09 09:17:20.005 [INF] 
+
+2023-06-09 09:17:20.005 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 09:17:20.007 [INF] -------------Request-End------------
+2023-06-09 09:17:32.538 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:17:32.540 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:17:32.541 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:17:33.027 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2023-06-09 09:17:33.094 [INF] -------------Request-Begin------------
+2023-06-09 09:17:33.097 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: 
+2023-06-09 09:17:33.098 [INF] 
+
+2023-06-09 09:17:33.099 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09T06:15:46.51Z","isValid":true,"accounts":[],"id":1}]}
+2023-06-09 09:17:33.100 [INF] -------------Request-End------------
+2023-06-09 09:18:23.280 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:18:23.293 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:18:23.297 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:18:23.309 [INF] -------------Request-Begin------------
+2023-06-09 09:18:23.311 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: {
+  "customerId": 1,
+  "accountNumber": 234-1,
+  "name": "arda1",
+  "openDate": "2023-06-09",
+  "balance": 299
+}
+2023-06-09 09:18:23.315 [INF] 
+
+2023-06-09 09:18:23.315 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 400 
+Response Body: {"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"00-0c01bce3afc167f0390b509b6a54bc3d-990146a479b9a57c-00","errors":{"request":["The request field is required."],"$.accountNumber":["'-' is an invalid end of a number. Expected a delimiter. Path: $.accountNumber | LineNumber: 2 | BytePositionInLine: 22."]}
+2023-06-09 09:18:23.317 [INF] -------------Request-End------------
+2023-06-09 09:19:00.356 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:19:00.364 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:19:00.364 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:19:00.371 [ERR] Failed executing DbCommand (4ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Decimal), @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Int32), @p5='?', @p6='?' (DbType = DateTime), @p7='?' (DbType = DateTime), @p8='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO dbo."Account" ("AccountNumber", "Balance", "CreatedAt", "CreatedBy", "CustomerId", "Name", "OpenDate", "UpdatedAt", "UpdatedBy")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)
+RETURNING "Id", "IsValid";
+2023-06-09 09:19:00.387 [ERR] An exception occurred in the database while saving changes for context type 'SimApi.Data.Context.SimEfDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+2023-06-09 09:19:00.434 [ERR] Insert Exception
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> System.InvalidCastException: Cannot write DateTime with Kind=Unspecified to PostgreSQL type 'timestamp with time zone', only UTC is supported. Note that it's not possible to mix DateTimes with different Kinds in an array/range. See the Npgsql.EnableLegacyTimestampBehavior AppContext switch to enable legacy behavior.
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateAndGetLength(DateTime value, NpgsqlParameter parameter)
+   at Npgsql.Internal.TypeHandlers.DateTimeHandlers.TimestampTzHandler.ValidateObjectAndGetLength(Object value, NpgsqlLengthCache& lengthCache, NpgsqlParameter parameter)
+   at Npgsql.NpgsqlParameter.ValidateAndGetLength()
+   at Npgsql.NpgsqlParameterCollection.ValidateAndBind(ConnectorTypeMapper typeMapper)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(IEnumerable`1 commandBatches, IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(StateManager stateManager, Boolean acceptAllChangesOnSuccess)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at SimApi.Data.Uow.UnitOfWork.Complete() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\UnitOfWork\UnitOfWork.cs:line 39
+   at SimApi.Operation.BaseService`3.Insert(TRequest request) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Base\BaseService.cs:line 86
+2023-06-09 09:19:00.442 [INF] -------------Request-Begin------------
+2023-06-09 09:19:00.443 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":2341,"name":"arda1","openDate":"2023-06-09","balance":200}
+2023-06-09 09:19:00.444 [INF] 
+
+2023-06-09 09:19:00.445 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"An error occurred while saving the entity changes. See the inner exception for details."}
+2023-06-09 09:19:00.446 [INF] -------------Request-End------------
+2023-06-09 09:20:45.093 [INF] Application is starting...
+2023-06-09 09:20:55.135 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:20:55.139 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:20:55.141 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:20:56.083 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:20:56.088 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:20:56.869 [INF] -------------Request-Begin------------
+2023-06-09 09:20:56.871 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: 
+2023-06-09 09:20:56.872 [INF] 
+
+2023-06-09 09:20:56.873 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[]}
+2023-06-09 09:20:56.874 [INF] -------------Request-End------------
+2023-06-09 09:21:25.045 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:21:25.046 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:21:25.047 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:22:19.876 [INF] -------------Request-Begin------------
+2023-06-09 09:22:19.877 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":100}
+2023-06-09 09:22:19.879 [INF] 
+
+2023-06-09 09:22:19.880 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 09:22:19.881 [INF] -------------Request-End------------
+2023-06-09 09:22:31.221 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:22:31.223 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:22:31.224 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:22:31.264 [INF] -------------Request-Begin------------
+2023-06-09 09:22:31.265 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: 
+2023-06-09 09:22:31.266 [INF] 
+
+2023-06-09 09:22:31.267 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":100.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 09:22:31.269 [INF] -------------Request-End------------
+2023-06-09 09:22:54.077 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:22:54.083 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:22:54.083 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:22:54.369 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2023-06-09 09:22:54.415 [INF] -------------Request-Begin------------
+2023-06-09 09:22:54.418 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: 
+2023-06-09 09:22:54.419 [INF] 
+
+2023-06-09 09:22:54.419 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09T06:15:46.51Z","isValid":true,"accounts":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":100.00,"isValid":true,"transactions":[],"id":1}],"id":1}]}
+2023-06-09 09:22:54.421 [INF] -------------Request-End------------
+2023-06-09 09:23:25.755 [INF] Application is starting...
+2023-06-09 09:24:19.880 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:24:19.884 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:24:19.886 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:24:20.887 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:24:20.892 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:24:22.174 [INF] -------------Request-Begin------------
+2023-06-09 09:24:22.178 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Transaction/Deposit 
+QueryString:  
+Request Body: {"accountId":1,"description":"added","amount":100}
+2023-06-09 09:24:22.179 [INF] 
+
+2023-06-09 09:24:22.179 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Transaction/Deposit 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":{"referenceNumber":"CBA16EBBCE","id":1}}
+2023-06-09 09:24:22.181 [INF] -------------Request-End------------
+2023-06-09 09:24:34.782 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:24:34.783 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:24:34.785 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:24:34.963 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2023-06-09 09:24:35.011 [INF] -------------Request-Begin------------
+2023-06-09 09:24:35.013 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: 
+2023-06-09 09:24:35.014 [INF] 
+
+2023-06-09 09:24:35.015 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09T06:15:46.51Z","isValid":true,"accounts":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":200.00,"isValid":true,"transactions":[{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","id":1}],"id":1}],"id":1}]}
+2023-06-09 09:24:35.016 [INF] -------------Request-End------------
+2023-06-09 09:24:54.303 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:24:54.304 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:24:54.305 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:24:54.324 [INF] -------------Request-Begin------------
+2023-06-09 09:24:54.326 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: 
+2023-06-09 09:24:54.332 [INF] 
+
+2023-06-09 09:24:54.335 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":200.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 09:24:54.340 [INF] -------------Request-End------------
+2023-06-09 09:27:34.700 [INF] Application is starting...
+2023-06-09 09:27:59.883 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:27:59.887 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:27:59.890 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:28:00.883 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:28:00.888 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 09:28:02.155 [INF] -------------Request-Begin------------
+2023-06-09 09:28:02.156 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Transaction/Deposit 
+QueryString:  
+Request Body: {"accountId":1,"description":"add100","amount":100}
+2023-06-09 09:28:02.157 [INF] 
+
+2023-06-09 09:28:02.158 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Transaction/Deposit 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":{"referenceNumber":"1C2CC523A8","id":2}}
+2023-06-09 09:28:02.159 [INF] -------------Request-End------------
+2023-06-09 09:28:08.408 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:28:08.409 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:28:08.410 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:28:08.477 [INF] -------------Request-Begin------------
+2023-06-09 09:28:08.479 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: 
+2023-06-09 09:28:08.480 [INF] 
+
+2023-06-09 09:28:08.481 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 09:28:08.483 [INF] -------------Request-End------------
+2023-06-09 09:56:31.089 [INF] Application is starting...
+2023-06-09 09:57:18.299 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 09:57:18.302 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 09:57:18.304 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 09:57:19.456 [INF] -------------Request-Begin------------
+2023-06-09 09:57:19.458 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByAccountId/1 
+QueryString:  
+Request Body: 
+2023-06-09 09:57:19.458 [INF] 
+
+2023-06-09 09:57:19.459 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByAccountId/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik","id":1},{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:28:02.05273Z","description":"add100","referenceNumber":"1C2CC523A8","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik","id":2}]}
+2023-06-09 09:57:19.461 [INF] -------------Request-End------------
+2023-06-09 10:51:06.700 [INF] Application is starting...
+2023-06-09 10:51:33.579 [INF] Application is starting...
+2023-06-09 10:56:47.509 [INF] Application is starting...
+2023-06-09 11:01:27.171 [INF] Application is starting...
+2023-06-09 11:01:45.988 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:01:45.992 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:01:45.994 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:01:46.758 [INF] -------------Request-Begin------------
+2023-06-09 11:01:46.763 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 11:01:46.763 [INF] 
+
+2023-06-09 11:01:46.764 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 11:01:46.765 [INF] -------------Request-End------------
+2023-06-09 11:01:55.989 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:01:55.991 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:01:55.992 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:01:56.056 [INF] -------------Request-Begin------------
+2023-06-09 11:01:56.059 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+Request Body: 
+2023-06-09 11:01:56.060 [INF] 
+
+2023-06-09 11:01:56.061 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}}
+2023-06-09 11:01:56.063 [INF] -------------Request-End------------
+2023-06-09 11:02:27.152 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:02:27.162 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:02:27.167 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:02:27.823 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 11:02:27.829 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 11:02:28.414 [INF] -------------Request-Begin------------
+2023-06-09 11:02:28.417 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account/1 
+QueryString:  
+Request Body: 
+2023-06-09 11:02:28.418 [INF] 
+
+2023-06-09 11:02:28.419 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}}
+2023-06-09 11:02:28.421 [INF] -------------Request-End------------
+2023-06-09 11:02:37.053 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:02:37.055 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:02:37.056 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:02:37.097 [INF] -------------Request-Begin------------
+2023-06-09 11:02:37.098 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: 
+2023-06-09 11:02:37.103 [INF] 
+
+2023-06-09 11:02:37.104 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 11:02:37.106 [INF] -------------Request-End------------
+2023-06-09 11:02:56.152 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:02:56.157 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:02:56.158 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:02:56.329 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2023-06-09 11:02:56.478 [INF] -------------Request-Begin------------
+2023-06-09 11:02:56.481 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: 
+2023-06-09 11:02:56.482 [INF] 
+
+2023-06-09 11:02:56.483 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09T06:15:46.51Z","isValid":true,"accounts":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","id":1},{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:28:02.05273Z","description":"add100","referenceNumber":"1C2CC523A8","transactionCode":"DEPOSIT","id":2}],"id":1}],"id":1}]}
+2023-06-09 11:02:56.486 [INF] -------------Request-End------------
+2023-06-09 11:03:28.010 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:03:28.011 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:03:28.012 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:03:28.034 [INF] -------------Request-Begin------------
+2023-06-09 11:03:28.036 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport 
+QueryString:  
+Request Body: 
+2023-06-09 11:03:28.037 [INF] 
+
+2023-06-09 11:03:28.038 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik","id":1},{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:28:02.05273Z","description":"add100","referenceNumber":"1C2CC523A8","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik","id":2}]}
+2023-06-09 11:03:28.043 [INF] -------------Request-End------------
+2023-06-09 11:58:37.966 [INF] Application is starting...
+2023-06-09 11:58:53.381 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:58:53.385 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:58:53.386 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:58:54.126 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 34
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 11:58:54.213 [INF] -------------Request-Begin------------
+2023-06-09 11:58:54.214 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 11:58:54.216 [INF] 
+
+2023-06-09 11:58:54.217 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 11:58:54.218 [INF] -------------Request-End------------
+2023-06-09 11:59:27.370 [INF] Application is starting...
+2023-06-09 11:59:36.554 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 11:59:36.559 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 11:59:36.560 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 11:59:37.374 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 34
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 11:59:37.450 [INF] -------------Request-Begin------------
+2023-06-09 11:59:37.451 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 11:59:37.452 [INF] 
+
+2023-06-09 11:59:37.454 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 11:59:37.456 [INF] -------------Request-End------------
+2023-06-09 12:00:17.995 [INF] Application is starting...
+2023-06-09 12:00:25.403 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:00:25.407 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:00:25.409 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:00:26.136 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 34
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:00:26.205 [INF] -------------Request-Begin------------
+2023-06-09 12:00:26.207 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:00:26.208 [INF] 
+
+2023-06-09 12:00:26.209 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:00:26.211 [INF] -------------Request-End------------
+2023-06-09 12:01:53.291 [INF] Application is starting...
+2023-06-09 12:01:59.280 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:01:59.285 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:01:59.287 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:02:00.060 [INF] -------------Request-Begin------------
+2023-06-09 12:02:00.062 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:02:00.063 [INF] 
+
+2023-06-09 12:02:00.063 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 12:02:00.064 [INF] -------------Request-End------------
+2023-06-09 12:03:32.166 [INF] Application is starting...
+2023-06-09 12:03:41.198 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:03:41.203 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:03:41.205 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:03:41.959 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 34
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:03:42.048 [INF] -------------Request-Begin------------
+2023-06-09 12:03:42.051 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:03:42.053 [INF] 
+
+2023-06-09 12:03:42.055 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:03:42.057 [INF] -------------Request-End------------
+2023-06-09 12:05:01.610 [INF] Application is starting...
+2023-06-09 12:05:08.780 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:05:08.783 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:05:08.785 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:05:09.582 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 34
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:05:09.669 [INF] -------------Request-Begin------------
+2023-06-09 12:05:09.671 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:05:09.672 [INF] 
+
+2023-06-09 12:05:09.674 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:05:09.675 [INF] -------------Request-End------------
+2023-06-09 12:08:44.765 [INF] Application is starting...
+2023-06-09 12:08:52.585 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:08:52.589 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:08:52.591 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:08:53.370 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42601: syntax error at or near "`"
+
+POSITION: 35
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 35
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42601
+    MessageText: syntax error at or near "`"
+    Position: 35
+    File: scan.l
+    Line: 1192
+    Routine: scanner_yyerror
+2023-06-09 12:08:53.441 [INF] -------------Request-Begin------------
+2023-06-09 12:08:53.442 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:08:53.443 [INF] 
+
+2023-06-09 12:08:53.445 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42601: syntax error at or near \"`\"\r\n\r\nPOSITION: 35","response":null}
+2023-06-09 12:08:53.448 [INF] -------------Request-End------------
+2023-06-09 12:09:33.723 [INF] Application is starting...
+2023-06-09 12:09:40.680 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:09:40.685 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:09:40.688 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:09:41.436 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 35
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:09:41.505 [INF] -------------Request-Begin------------
+2023-06-09 12:09:41.507 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:09:41.508 [INF] 
+
+2023-06-09 12:09:41.509 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:09:41.511 [INF] -------------Request-End------------
+2023-06-09 12:11:19.726 [INF] Application is starting...
+2023-06-09 12:11:32.533 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:11:32.537 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:11:32.540 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:11:33.277 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.entity" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 35
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.entity" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:11:33.349 [INF] -------------Request-Begin------------
+2023-06-09 12:11:33.351 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:11:33.353 [INF] 
+
+2023-06-09 12:11:33.354 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.entity\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:11:33.355 [INF] -------------Request-End------------
+2023-06-09 12:18:58.395 [INF] Application is starting...
+2023-06-09 12:19:05.493 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:19:05.497 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:19:05.499 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:19:06.228 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 36
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:19:06.297 [INF] -------------Request-Begin------------
+2023-06-09 12:19:06.299 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:19:06.300 [INF] 
+
+2023-06-09 12:19:06.303 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:19:06.304 [INF] -------------Request-End------------
+2023-06-09 12:20:05.095 [INF] Application is starting...
+2023-06-09 12:20:12.731 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:20:12.735 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:20:12.737 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:20:13.489 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 36
+   at SimApi.Operation.DapperAccountService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 55
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:20:13.557 [INF] -------------Request-Begin------------
+2023-06-09 12:20:13.559 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:20:13.560 [INF] 
+
+2023-06-09 12:20:13.561 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:20:13.563 [INF] -------------Request-End------------
+2023-06-09 12:26:52.068 [INF] Application is starting...
+2023-06-09 12:26:59.269 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:26:59.274 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:26:59.276 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:27:00.106 [INF] -------------Request-Begin------------
+2023-06-09 12:27:00.108 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:27:00.109 [INF] 
+
+2023-06-09 12:27:00.109 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 12:27:00.111 [INF] -------------Request-End------------
+2023-06-09 12:51:36.871 [INF] Application is starting...
+2023-06-09 12:51:49.356 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:51:49.360 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:51:49.362 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:51:50.148 [ERR] GetById Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.Account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryRowImpl[T](IDbConnection cnn, Row row, CommandDefinition& command, Type effectiveType) in /_/Dapper/SqlMapper.cs:line 1187
+   at Dapper.SqlMapper.QueryFirst[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 754
+   at SimApi.Data.Repository.DapperAccountRepository.GetById(Int32 Id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Account\DapperAccountRepository.cs:line 59
+   at SimApi.Operation.DapperAccountService.GetById(Int32 id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 70
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.Account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:51:50.222 [INF] -------------Request-Begin------------
+2023-06-09 12:51:50.224 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+Request Body: 
+2023-06-09 12:51:50.225 [INF] 
+
+2023-06-09 12:51:50.226 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.Account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:51:50.227 [INF] -------------Request-End------------
+2023-06-09 12:52:34.365 [INF] Application is starting...
+2023-06-09 12:52:43.234 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:52:43.239 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:52:43.241 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:52:44.036 [ERR] GetById Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.Account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryRowImpl[T](IDbConnection cnn, Row row, CommandDefinition& command, Type effectiveType) in /_/Dapper/SqlMapper.cs:line 1187
+   at Dapper.SqlMapper.QueryFirst[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 754
+   at SimApi.Data.Repository.DapperAccountRepository.GetById(Int32 Id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Account\DapperAccountRepository.cs:line 59
+   at SimApi.Operation.DapperAccountService.GetById(Int32 id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 70
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.Account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:52:44.102 [INF] -------------Request-Begin------------
+2023-06-09 12:52:44.104 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+Request Body: 
+2023-06-09 12:52:44.107 [INF] 
+
+2023-06-09 12:52:44.108 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.Account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:52:44.110 [INF] -------------Request-End------------
+2023-06-09 12:52:57.481 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:52:57.483 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:52:57.484 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:52:57.604 [INF] -------------Request-Begin------------
+2023-06-09 12:52:57.607 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 12:52:57.608 [INF] 
+
+2023-06-09 12:52:57.610 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 12:52:57.612 [INF] -------------Request-End------------
+2023-06-09 12:53:38.371 [INF] Application is starting...
+2023-06-09 12:53:49.265 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:53:49.270 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:53:49.272 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:53:50.054 [ERR] GetById Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.Account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryRowImpl[T](IDbConnection cnn, Row row, CommandDefinition& command, Type effectiveType) in /_/Dapper/SqlMapper.cs:line 1187
+   at Dapper.SqlMapper.QueryFirst[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 754
+   at SimApi.Data.Repository.DapperAccountRepository.GetById(Int32 Id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Account\DapperAccountRepository.cs:line 59
+   at SimApi.Operation.DapperAccountService.GetById(Int32 id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 70
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.Account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:53:50.125 [INF] -------------Request-Begin------------
+2023-06-09 12:53:50.126 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+Request Body: 
+2023-06-09 12:53:50.128 [INF] 
+
+2023-06-09 12:53:50.130 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.Account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:53:50.133 [INF] -------------Request-End------------
+2023-06-09 12:54:57.179 [INF] Application is starting...
+2023-06-09 12:55:09.239 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:55:09.243 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:55:09.245 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:55:10.042 [ERR] GetById Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.Account" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryRowImpl[T](IDbConnection cnn, Row row, CommandDefinition& command, Type effectiveType) in /_/Dapper/SqlMapper.cs:line 1187
+   at Dapper.SqlMapper.QueryFirst[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 754
+   at SimApi.Data.Repository.DapperAccountRepository.GetById(Int32 Id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Account\DapperAccountRepository.cs:line 59
+   at SimApi.Operation.DapperAccountService.GetById(Int32 id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 70
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.Account" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 12:55:10.116 [INF] -------------Request-Begin------------
+2023-06-09 12:55:10.118 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+Request Body: 
+2023-06-09 12:55:10.119 [INF] 
+
+2023-06-09 12:55:10.120 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.Account\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 12:55:10.122 [INF] -------------Request-End------------
+2023-06-09 12:58:05.368 [INF] Application is starting...
+2023-06-09 12:59:07.525 [INF] Application is starting...
+2023-06-09 12:59:16.878 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 12:59:16.883 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 12:59:16.885 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 12:59:17.710 [INF] -------------Request-Begin------------
+2023-06-09 12:59:17.712 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+Request Body: 
+2023-06-09 12:59:17.714 [INF] 
+
+2023-06-09 12:59:17.714 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}}
+2023-06-09 12:59:17.715 [INF] -------------Request-End------------
+2023-06-09 13:03:31.439 [INF] Application is starting...
+2023-06-09 13:29:09.758 [INF] Application is starting...
+2023-06-09 13:30:17.826 [INF] Application is starting...
+2023-06-09 13:30:47.918 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:30:47.922 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:30:47.924 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:30:48.404 [INF] -------------Request-Begin------------
+2023-06-09 13:30:48.406 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":1235,"name":"arda2","openDate":"2023-06-09","balance":100}
+2023-06-09 13:30:48.407 [INF] 
+
+2023-06-09 13:30:48.411 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 13:30:48.412 [INF] -------------Request-End------------
+2023-06-09 13:31:05.643 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:31:05.645 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:31:05.646 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:31:06.301 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 13:31:06.307 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 13:31:07.060 [INF] -------------Request-Begin------------
+2023-06-09 13:31:07.064 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+Request Body: 
+2023-06-09 13:31:07.065 [INF] 
+
+2023-06-09 13:31:07.066 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Account 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 13:31:07.068 [INF] -------------Request-End------------
+2023-06-09 13:33:13.902 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:33:13.909 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:33:13.914 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:33:13.970 [INF] -------------Request-Begin------------
+2023-06-09 13:33:13.972 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 13:33:13.974 [INF] 
+
+2023-06-09 13:33:13.974 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 13:33:13.976 [INF] -------------Request-End------------
+2023-06-09 13:33:39.406 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:33:39.407 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:33:39.410 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:33:39.415 [INF] -------------Request-Begin------------
+2023-06-09 13:33:39.417 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":1235,"name":"arda2","openDate":"2023-06-09","balance":100}
+2023-06-09 13:33:39.424 [INF] 
+
+2023-06-09 13:33:39.428 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 13:33:39.431 [INF] -------------Request-End------------
+2023-06-09 13:33:40.467 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:33:40.469 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:33:40.470 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:33:40.474 [INF] -------------Request-Begin------------
+2023-06-09 13:33:40.477 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":1235,"name":"arda2","openDate":"2023-06-09","balance":100}
+2023-06-09 13:33:40.479 [INF] 
+
+2023-06-09 13:33:40.485 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 13:33:40.492 [INF] -------------Request-End------------
+2023-06-09 13:34:46.394 [INF] Application is starting...
+2023-06-09 13:35:12.895 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:35:12.899 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:35:12.902 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:37:25.288 [INF] -------------Request-Begin------------
+2023-06-09 13:37:25.431 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":3454,"name":"arda","openDate":"2023-06-09","balance":100}
+2023-06-09 13:37:25.655 [INF] 
+
+2023-06-09 13:37:25.831 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 13:37:25.978 [INF] -------------Request-End------------
+2023-06-09 13:40:59.764 [INF] Application is starting...
+2023-06-09 13:41:29.629 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:41:29.633 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:41:29.635 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:41:29.951 [INF] -------------Request-Begin------------
+2023-06-09 13:41:29.953 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {
+  "customerId": 1,
+  "accountNumber": 546t5,
+  "name": "arda",
+  "openDate": "2023-06-09",
+  "balance": 100
+}
+2023-06-09 13:41:29.954 [INF] 
+
+2023-06-09 13:41:29.955 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 400 
+Response Body: {"type":"https://tools.ietf.org/html/rfc7231#section-6.5.1","title":"One or more validation errors occurred.","status":400,"traceId":"00-df05145f93a6cd02f2fa66424ac3ca2a-1b22e6466e431ad1-00","errors":{"request":["The request field is required."],"$.accountNumber":["'t' is an invalid end of a number. Expected a delimiter. Path: $.accountNumber | LineNumber: 2 | BytePositionInLine: 22."]}
+2023-06-09 13:41:29.957 [INF] -------------Request-End------------
+2023-06-09 13:41:51.718 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:41:51.727 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:41:51.731 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:45:22.730 [INF] Application is starting...
+2023-06-09 13:45:50.522 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:45:50.525 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:45:50.527 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:45:58.922 [INF] -------------Request-Begin------------
+2023-06-09 13:45:58.923 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":456546,"name":"arda2","openDate":"2023-06-09","balance":100}
+2023-06-09 13:45:58.924 [INF] 
+
+2023-06-09 13:45:58.925 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 13:45:58.926 [INF] -------------Request-End------------
+2023-06-09 13:46:19.940 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:46:19.954 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:46:19.956 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:46:20.339 [INF] -------------Request-Begin------------
+2023-06-09 13:46:20.341 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 13:46:20.342 [INF] 
+
+2023-06-09 13:46:20.343 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 13:46:20.344 [INF] -------------Request-End------------
+2023-06-09 13:46:29.782 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:46:29.783 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:46:29.785 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:46:29.837 [ERR] GetById Exception
+System.Collections.Generic.KeyNotFoundException: Account with id [2] could not be found.
+   at SimApi.Data.Repository.DapperRepository`1.GetById(Int32 id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 59
+   at SimApi.Operation.DapperAccountService.GetById(Int32 id) in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\Dapper\Account\DapperAccountService.cs:line 70
+2023-06-09 13:46:29.882 [INF] -------------Request-Begin------------
+2023-06-09 13:46:29.884 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/2 
+QueryString:  
+Request Body: 
+2023-06-09 13:46:29.886 [INF] 
+
+2023-06-09 13:46:29.887 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount/2 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"Account with id [2] could not be found.","response":null}
+2023-06-09 13:46:29.888 [INF] -------------Request-End------------
+2023-06-09 13:49:29.821 [INF] Application is starting...
+2023-06-09 13:49:53.593 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:49:53.598 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:49:53.600 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:52:34.756 [INF] Application is starting...
+2023-06-09 13:52:44.730 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 13:52:44.735 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 13:52:44.738 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 13:53:29.321 [INF] -------------Request-Begin------------
+2023-06-09 13:53:29.323 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 13:53:29.324 [INF] 
+
+2023-06-09 13:53:29.324 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 13:53:29.325 [INF] -------------Request-End------------
+2023-06-09 14:09:28.440 [INF] Application is starting...
+2023-06-09 14:09:55.135 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 14:09:55.139 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 14:09:55.141 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 14:11:04.763 [INF] -------------Request-Begin------------
+2023-06-09 14:11:04.768 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: {"customerId":1,"accountNumber":54645,"name":"arda2","openDate":"2023-06-09T11:09:42.253Z","balance":0}
+2023-06-09 14:11:04.768 [INF] 
+
+2023-06-09 14:11:04.769 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":null}
+2023-06-09 14:11:04.770 [INF] -------------Request-End------------
+2023-06-09 14:11:17.584 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 14:11:17.587 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 14:11:17.588 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 14:11:25.085 [INF] -------------Request-Begin------------
+2023-06-09 14:11:25.087 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+Request Body: 
+2023-06-09 14:11:25.088 [INF] 
+
+2023-06-09 14:11:25.090 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/DapperAccount 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[],"id":1}]}
+2023-06-09 14:11:25.091 [INF] -------------Request-End------------
+2023-06-09 14:12:31.234 [INF] Application is starting...
+2023-06-09 14:12:54.021 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 14:12:54.026 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 14:12:54.029 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 14:14:21.790 [INF] Application is starting...
+2023-06-09 14:14:41.047 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 14:14:41.052 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 14:14:41.054 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 15:26:39.274 [INF] Application is starting...
+2023-06-09 15:26:50.641 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 15:26:50.647 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 15:26:50.649 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 15:26:56.512 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.category" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 45
+   at SimApi.Operation.CategorydapperService.DapperCategoryService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\CategorydapperService\DapperCategoryService.cs:line 28
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.category" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 15:31:27.061 [INF] Application is starting...
+2023-06-09 15:31:37.269 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 15:31:37.274 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 15:31:37.276 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 15:31:40.818 [ERR] GetAll Exception
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.category" does not exist
+
+POSITION: 15
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.System.Data.IDbCommand.ExecuteReader(CommandBehavior behavior)
+   at Dapper.SqlMapper.ExecuteReaderWithFlagsFallback(IDbCommand cmd, Boolean wasClosed, CommandBehavior behavior) in /_/Dapper/SqlMapper.cs:line 1066
+   at Dapper.SqlMapper.QueryImpl[T](IDbConnection cnn, CommandDefinition command, Type effectiveType)+MoveNext() in /_/Dapper/SqlMapper.cs:line 1094
+   at System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at Dapper.SqlMapper.Query[T](IDbConnection cnn, String sql, Object param, IDbTransaction transaction, Boolean buffered, Nullable`1 commandTimeout, Nullable`1 commandType) in /_/Dapper/SqlMapper.cs:line 734
+   at SimApi.Data.Repository.DapperRepository`1.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Data\Repository\Dapper\DapperRepository.cs:line 45
+   at SimApi.Operation.CategorydapperService.DapperCategoryService.GetAll() in C:\Users\celik\Source\Repos\pk-sim2\SimApi\SimApi.Operation\CategorydapperService\DapperCategoryService.cs:line 28
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.category" does not exist
+    Position: 15
+    File: parse_relation.c
+    Line: 1374
+    Routine: parserOpenTable
+2023-06-09 15:31:40.880 [INF] -------------Request-Begin------------
+2023-06-09 15:31:40.882 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/CategoryDapper 
+QueryString:  
+Request Body: 
+2023-06-09 15:31:40.882 [INF] 
+
+2023-06-09 15:31:40.883 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/CategoryDapper 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":false,"message":"42P01: relation \"dbo.category\" does not exist\r\n\r\nPOSITION: 15","response":null}
+2023-06-09 15:31:40.884 [INF] -------------Request-End------------
+2023-06-09 15:33:23.219 [INF] Application is starting...
+2023-06-09 15:33:32.638 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 15:33:32.642 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 15:33:32.643 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 15:33:36.860 [INF] -------------Request-Begin------------
+2023-06-09 15:33:36.862 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/CategoryDapper 
+QueryString:  
+Request Body: 
+2023-06-09 15:33:36.863 [INF] 
+
+2023-06-09 15:33:36.864 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/CategoryDapper 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[]}
+2023-06-09 15:33:36.864 [INF] -------------Request-End------------
+2023-06-09 15:40:00.870 [INF] Application is starting...
+2023-06-09 15:40:17.780 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 15:40:17.784 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 15:40:17.787 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 15:40:18.560 [INF] -------------Request-Begin------------
+2023-06-09 15:40:18.563 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport 
+QueryString:  
+Request Body: 
+2023-06-09 15:40:18.564 [INF] 
+
+2023-06-09 15:40:18.565 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik","id":1},{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:28:02.05273Z","description":"add100","referenceNumber":"1C2CC523A8","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik","id":2}]}
+2023-06-09 15:40:18.567 [INF] -------------Request-End------------
+2023-06-09 16:06:21.086 [INF] Application is starting...
+2023-06-09 16:06:34.851 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 16:06:34.855 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 16:06:34.858 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 16:06:49.820 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 16:06:49.826 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 16:06:50.652 [ERR] Failed executing DbCommand (68ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 16:06:50.709 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 16:07:56.191 [INF] Application is starting...
+2023-06-09 16:08:11.671 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 16:08:11.676 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 16:08:11.678 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 16:08:17.179 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 16:08:17.185 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 16:08:17.929 [ERR] Failed executing DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."Id", v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 16:08:17.979 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:08:08.513 [INF] Application is starting...
+2023-06-09 17:08:22.944 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:08:22.948 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:08:22.952 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:08:23.967 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:08:23.973 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:08:24.706 [ERR] Failed executing DbCommand (57ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."Id", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 17:08:24.758 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:09:34.620 [INF] Application is starting...
+2023-06-09 17:09:46.996 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:09:47.000 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:09:47.003 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:09:47.985 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:09:47.990 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:09:48.720 [ERR] Failed executing DbCommand (61ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."Id", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 17:09:48.773 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:11:05.592 [INF] Application is starting...
+2023-06-09 17:11:15.828 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:11:15.833 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:11:15.837 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:11:16.832 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:11:16.836 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:11:17.564 [ERR] Failed executing DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT d."AccountId", d."AccountName", d."AccountNumber", d."Amount", d."CustomerId", d."CustomerNumber", d."Description", d."Direction", d."FirstName", d."Id", d."LastName", d."ReferenceNumber", d."TransactionCode", d."TransactionDate"
+FROM "dbo.vTransactionReport" AS d
+2023-06-09 17:11:17.614 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "dbo.vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "dbo.vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:18:47.529 [INF] Application is starting...
+2023-06-09 17:18:59.695 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:18:59.700 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:18:59.703 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:19:00.691 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:19:00.697 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:19:01.542 [ERR] Failed executing DbCommand (61ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."Id", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM vtransactionreport AS v
+2023-06-09 17:19:01.591 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vtransactionreport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vtransactionreport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vtransactionreport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vtransactionreport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:28:42.962 [INF] Application is starting...
+2023-06-09 17:28:55.295 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:28:55.299 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:28:55.302 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:28:56.275 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:28:56.281 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:28:57.039 [ERR] Failed executing DbCommand (63ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."Id", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 17:28:57.092 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:32:31.797 [INF] Application is starting...
+2023-06-09 17:32:42.453 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:32:42.460 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:32:42.462 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:32:43.524 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:32:43.529 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:32:44.329 [ERR] Failed executing DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."Id", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 17:32:44.382 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:33:23.931 [INF] Application is starting...
+2023-06-09 17:33:30.599 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:33:30.604 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:33:30.607 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:34:01.197 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:34:01.202 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:34:01.936 [ERR] Failed executing DbCommand (69ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT v."AccountId", v."AccountName", v."AccountNumber", v."Amount", v."CustomerId", v."CustomerNumber", v."Description", v."Direction", v."FirstName", v."Id", v."LastName", v."ReferenceNumber", v."TransactionCode", v."TransactionDate"
+FROM "vTransactionReport" AS v
+2023-06-09 17:34:01.984 [ERR] An exception occurred while iterating over the results of a query for context type 'SimApi.Data.Context.SimEfDbContext'.
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+Npgsql.PostgresException (0x80004005): 42P01: relation "vTransactionReport" does not exist
+
+POSITION: 244
+   at Npgsql.Internal.NpgsqlConnector.<ReadMessage>g__ReadMessageLong|211_0(NpgsqlConnector connector, Boolean async, DataRowLoadingMode dataRowLoadingMode, Boolean readingNotifications, Boolean isReadingPrependedMessage)
+   at Npgsql.NpgsqlDataReader.NextResult(Boolean async, Boolean isConsuming, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlDataReader.NextResult()
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReader(RelationalCommandParameterObject parameterObject)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.InitializeReader(Enumerator enumerator)
+   at Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.NpgsqlExecutionStrategy.Execute[TState,TResult](TState state, Func`3 operation, Func`3 verifySucceeded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.Enumerator.MoveNext()
+  Exception data:
+    Severity: ERROR
+    SqlState: 42P01
+    MessageText: relation "vTransactionReport" does not exist
+    Position: 244
+    File: parse_relation.c
+    Line: 1395
+    Routine: parserOpenTable
+2023-06-09 17:34:11.323 [INF] Application is starting...
+2023-06-09 17:34:19.284 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:34:19.288 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:34:19.290 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:38:14.599 [INF] Application is starting...
+2023-06-09 17:38:21.103 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 17:38:21.109 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 17:38:21.111 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 17:38:31.465 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:38:31.471 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 17:38:32.272 [INF] -------------Request-Begin------------
+2023-06-09 17:38:32.274 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport 
+QueryString:  
+Request Body: 
+2023-06-09 17:38:32.274 [INF] 
+
+2023-06-09 17:38:32.275 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport 
+QueryString:  
+StatusCode: 200 
+Response Body: [{"id":1,"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik"},{"id":2,"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:28:02.05273Z","description":"add100","referenceNumber":"1C2CC523A8","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik"}]
+2023-06-09 17:38:32.277 [INF] -------------Request-End------------
+2023-06-09 18:19:24.122 [INF] Application is starting...
+2023-06-09 18:19:36.284 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:19:36.288 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:19:36.289 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:19:37.286 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:19:37.292 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:19:37.948 [WRN] Compiling a query which loads related collections for more than one collection navigation, either via 'Include' or through projection, but no 'QuerySplittingBehavior' has been configured. By default, Entity Framework will use 'QuerySplittingBehavior.SingleQuery', which can potentially result in slow query performance. See https://go.microsoft.com/fwlink/?linkid=2134277 for more information. To identify the query that's triggering this warning call 'ConfigureWarnings(w => w.Throw(RelationalEventId.MultipleCollectionIncludeWarning))'.
+2023-06-09 18:19:38.529 [INF] -------------Request-Begin------------
+2023-06-09 18:19:38.531 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+Request Body: 
+2023-06-09 18:19:38.532 [INF] 
+
+2023-06-09 18:19:38.534 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Customer 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":[{"customerNumber":234,"firstName":"arda","lastName":"celik","dateOfBirth":"2023-06-09T06:15:46.51Z","isValid":true,"accounts":[{"customerId":1,"accountNumber":2341,"name":"arda","openDate":"2023-06-09T06:21:07.812Z","balance":300.00,"isValid":true,"transactions":[{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","id":1},{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:28:02.05273Z","description":"add100","referenceNumber":"1C2CC523A8","transactionCode":"DEPOSIT","id":2}],"id":1}],"id":1}]}
+2023-06-09 18:19:38.536 [INF] -------------Request-End------------
+2023-06-09 18:34:47.310 [INF] Application is starting...
+2023-06-09 18:35:00.755 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:35:00.762 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:35:00.766 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:35:01.770 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:35:01.778 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:35:02.839 [INF] -------------Request-Begin------------
+2023-06-09 18:35:02.841 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Transaction/1 
+QueryString:  
+Request Body: 
+2023-06-09 18:35:02.842 [INF] 
+
+2023-06-09 18:35:02.843 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/Transaction/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"success":true,"message":"Success","response":{"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","id":1}}
+2023-06-09 18:35:02.844 [INF] -------------Request-End------------
+2023-06-09 18:35:12.560 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:35:12.562 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:35:12.563 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:35:12.620 [INF] -------------Request-Begin------------
+2023-06-09 18:35:12.622 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/1 
+QueryString:  
+Request Body: 
+2023-06-09 18:35:12.623 [INF] 
+
+2023-06-09 18:35:12.624 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"id":1,"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik"}
+2023-06-09 18:35:12.625 [INF] -------------Request-End------------
+2023-06-09 18:40:23.146 [INF] Application is starting...
+2023-06-09 18:40:34.547 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:40:34.550 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:40:34.553 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:40:35.580 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:40:35.585 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:40:36.547 [INF] -------------Request-Begin------------
+2023-06-09 18:40:36.549 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByReferenceNumber/1 
+QueryString:  
+Request Body: 
+2023-06-09 18:40:36.550 [INF] 
+
+2023-06-09 18:40:36.551 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByReferenceNumber/1 
+QueryString:  
+StatusCode: 204 
+Response Body: 
+2023-06-09 18:40:36.552 [INF] -------------Request-End------------
+2023-06-09 18:41:58.086 [INF] Application is starting...
+2023-06-09 18:42:09.954 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:42:09.958 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:42:09.960 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:42:11.020 [WRN] The 'bool' property 'IsValid' on entity type 'Account' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:42:11.025 [WRN] The 'bool' property 'IsValid' on entity type 'Customer' is configured with a database-generated default. This default will always be used for inserts when the property has the value 'false', since this is the CLR default for the 'bool' type. Consider using the nullable 'bool?' type instead, so that the default will only be used for inserts when the property value is 'null'.
+2023-06-09 18:42:11.971 [INF] -------------Request-Begin------------
+2023-06-09 18:42:11.973 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByCustomerId/1 
+QueryString:  
+Request Body: 
+2023-06-09 18:42:11.974 [INF] 
+
+2023-06-09 18:42:11.975 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByCustomerId/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"id":1,"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik"}
+2023-06-09 18:42:11.976 [INF] -------------Request-End------------
+2023-06-09 18:42:40.994 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:42:40.995 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:42:40.996 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:42:41.018 [INF] -------------Request-Begin------------
+2023-06-09 18:42:41.019 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByAccountId/2 
+QueryString:  
+Request Body: 
+2023-06-09 18:42:41.021 [INF] 
+
+2023-06-09 18:42:41.022 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByAccountId/2 
+QueryString:  
+StatusCode: 204 
+Response Body: 
+2023-06-09 18:42:41.023 [INF] -------------Request-End------------
+2023-06-09 18:42:49.661 [INF] LogHeartBeatMiddleware.Invoke
+2023-06-09 18:42:49.662 [INF] LogErrorHandlerMiddleware.Invoke
+2023-06-09 18:42:49.663 [INF] LogRequestLoggingMiddleware.Invoke
+2023-06-09 18:42:49.709 [INF] -------------Request-Begin------------
+2023-06-09 18:42:49.711 [INF] Http Request Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByAccountId/1 
+QueryString:  
+Request Body: 
+2023-06-09 18:42:49.712 [INF] 
+
+2023-06-09 18:42:49.713 [INF] Http Response Information: 
+Schema:https 
+Host: localhost:7235 
+Path: /simapi/v1/TransactionReport/ByAccountId/1 
+QueryString:  
+StatusCode: 200 
+Response Body: {"id":1,"accountId":1,"amount":100.00,"direction":0,"transactionDate":"2023-06-09T06:24:22.066064Z","description":"added","referenceNumber":"CBA16EBBCE","transactionCode":"DEPOSIT","customerId":1,"accountNumber":2341,"accountName":"arda","customerNumber":234,"firstName":"arda","lastName":"celik"}
+2023-06-09 18:42:49.714 [INF] -------------Request-End------------
